@@ -1,0 +1,46 @@
+import { useState } from "react";
+
+const Home = () => {
+
+    const[url, setUrl] = useState('');
+    const[fetchedUrl, setFetchedUrl] = useState(null);
+
+    const handleShorten = async (e)=> {
+        e.preventDefault();
+        
+        console.log("sent a post request");
+        
+        const res = await fetch('http://localhost:8000', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({long_url:url})
+        });
+
+        const short_url_doc = await res.json();
+        setFetchedUrl(short_url_doc);
+    }
+
+    return (
+        <div className="home">
+            <div className="input-field">
+                <input  
+                    type="text" 
+                    placeholder="Enter the url"
+                    value = {url}
+                    onChange={(e)=>{
+                        setUrl(e.target.value);
+                        console.log(e.target.value);
+                    }}
+                />
+                <button onClick={handleShorten}>Shorten</button>
+            </div>
+            {fetchedUrl != null && <div className="single-url">
+                {console.log("got the url_doc", fetchedUrl)}
+                    <p>short Url: <a href={fetchedUrl.shortUrl} target="_blank">{fetchedUrl.shortUrl}</a></p>
+                    <p>Long Url: <a href={fetchedUrl.redirectUrl} target="_blank">{fetchedUrl.redirectUrl}</a></p>
+                </div>}
+        </div>
+    );
+}
+ 
+export default Home;

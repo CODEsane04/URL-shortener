@@ -12,6 +12,11 @@ const urlSchema = new mongoose.Schema({
         required: true
     },
     visitHistory : [{ timestamp: {type : Number}}],
+    shortUrl: {
+        type: String,
+        required: true,
+        unique: true
+    }
 }, {timestamps: true});
 
 const URL = mongoose.model('url', urlSchema);

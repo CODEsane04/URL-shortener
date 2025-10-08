@@ -4,7 +4,7 @@ const URL = require('../models/urlModel');
 async function handleGenerateNewShortUrl(req, res) {
     console.log("recieved a post request");
     
-    const long_url = `http://${req.body.long_url}`;
+    const long_url = req.body.long_url;
 
     if (!long_url) {
         return res.status(400).json({message: "no long url reecieved"});
@@ -16,14 +16,23 @@ async function handleGenerateNewShortUrl(req, res) {
     const now = Date.now();
 
     try {
+
+        const short_url = `http://localhost:8000/${UID}`;
+
         await URL.create({
             shortId: UID,
+            shortUrl: short_url,
             redirectUrl: long_url,
             visitHistory: [{ timestamp: now }], 
         });
 
-        const short_url = `http://localhost:8000/${UID}`;
-        return res.status(201).json({short_url: short_url});
+        console.log("saved the entry");
+        
+        const short_url_doc = await URL.findOne({shortId:UID});
+
+        console.log("succesfully sent the url_doc", short_url_doc);
+        
+        return res.status(201).json(short_url_doc);
 
     } catch (error) {
         return res.status(500).json({message: "failed to shorten the url"});
@@ -61,8 +70,19 @@ async function handleGoToRedirectedUrl(req, res) {
     }
 }
 
+async function handleLoadAllLinks(req, res) {
+    console.log("recieved a request to load all urls");
+
+    try {
+        const allUrls = await URL.find({});
+        return res.status(200).json(allUrls);
+    } catch (error) {
+        return res.status(500).json({message: "failed to load all urls"})
+    }
+}
+
 module.exports = {
     handleGenerateNewShortUrl,
     handleGoToRedirectedUrl,
-
+    handleLoadAllLinks,
 }
