@@ -4,8 +4,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const urlRoutes = require('./routes/urlRouter')
 
-
-
 const PORT=8000;
 //connect to mongoDb
 mongoose.connect('mongodb://127.0.0.1:27017/url')
