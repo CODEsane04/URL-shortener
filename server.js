@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const urlRoutes = require('./routes/urlRouter')
+const userRoutes = require('./routes/userRouter')
 
 const PORT=8000;
 //connect to mongoDb
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/', urlRoutes);
+app.use('/user', userRoutes);
 
 
 
