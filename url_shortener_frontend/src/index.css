@@ -6,6 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -41,6 +46,7 @@ code {
   text-decoration: none;
   padding: 6px;
   color: #4a4a4a;
+  font-weight: bold;
 }
 .navbar a:hover {
   color: #f1356d;
@@ -55,7 +61,7 @@ code {
 }
 
 .home {
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
   
   border-radius: 1px;
@@ -67,7 +73,7 @@ code {
 .home input {
   padding: 8px;
   padding-right: 15px;
-  width: 320px;
+  width: 300px;
   border: none;
   border-radius: 2px;
 }
@@ -77,13 +83,14 @@ code {
   padding-left: 14px;
   padding-right: 14px;
   border: none;
-  background-color: #07cfcb;
+  background-color: #f1356d;
   border-radius: 2px;
+  margin-left: 20px;
+  font-weight: bold;
 }
 
 .home button:hover {
   cursor: pointer;
-  background-color: #07aeab;
   color: aliceblue;
 }
 
@@ -115,3 +122,57 @@ code {
   flex-direction: column;
   margin: 0 auto;
 }
+
+.box {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 16px;
+  box-shadow: 0px 14px 2000px #e65c9c;
+  border-radius: 14px;
+  margin-top: 20px;
+  background-color: transparent;
+}
+
+.s-inputs {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.s-inputs input {
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 14px;
+  border-radius: 2px;
+  border: none;
+  margin-top: 4px;
+}
+
+.s-inputs label {
+  color: #f1356d;
+  margin-right: auto;
+  font-weight: bold;
+}
+
+.box button {
+  background-color: #f1356d;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: 4px;
+  font-weight: bold;
+  margin: 8px;
+}
+
+.box button:hover {
+  cursor: pointer;
+  color: aliceblue;
+}
+
+.box h2 {
+  color: rgb(255, 255, 255);
+}
+

@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-const Home = () => {
-
+const Home = ({ isLoggedIn, setIsLoggedIn }) => {
+    console.log(isLoggedIn);
+    
     const[url, setUrl] = useState('');
     const[fetchedUrl, setFetchedUrl] = useState(null);
 
