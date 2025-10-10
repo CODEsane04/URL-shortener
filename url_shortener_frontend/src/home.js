@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({ isLoggedIn, setIsLoggedIn }) => {
     console.log(isLoggedIn);
-    
+    const navigate = useNavigate();
+
+    useEffect(()=> {
+        if (isLoggedIn === false || isLoggedIn === null) {
+            navigate('/')
+        }
+    }, [isLoggedIn, navigate]);
+
     const[url, setUrl] = useState('');
     const[fetchedUrl, setFetchedUrl] = useState(null);
 
