@@ -2,14 +2,14 @@ import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const Linkss = ({ isLoggedIn, setIsLoggedIn }) => {
+const Linkss = ({isLoading, isLoggedIn, setIsLoggedIn }) => {
 
     const[urls, setUrls] = useState([]);
     const navigate = useNavigate();
 
    useEffect(() => {
 
-        if (isLoggedIn === null || isLoggedIn === false) {
+        if ((isLoggedIn === null || isLoggedIn === false) && isLoading === false) {
             navigate('/')
         }
 

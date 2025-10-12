@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
 const { v4: uuidv4 } = require('uuid');
-const {setUser} = require('../service/authService')
+const {setUser, getUser} = require('../service/authService')
 
 async function handleUserSignUp (req, res) {
 
@@ -40,7 +40,24 @@ const handleUserLogin = async (req, res)=> {
     return res.status(200).json({message: "logged in succesfully"});
 }
 
+//check authentication
+
+const handleCheckAuth = async (req, res) => {
+    const token = req.cookies?.token;
+    if (!token) {
+        res.status(400).json({message: "no token"});
+    }
+    
+    try {
+        const user = getUser(token);
+        return res.status(200).json({message: "token is valid"});
+    } catch (error) {
+        return res.status(400).json({message : "token is invalid"});
+    }
+};
+
 module.exports = {
     handleUserSignUp,
-    handleUserLogin
+    handleUserLogin,
+    handleCheckAuth,
 }

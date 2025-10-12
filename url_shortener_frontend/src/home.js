@@ -1,12 +1,12 @@
 import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
-const Home = ({ isLoggedIn, setIsLoggedIn }) => {
+const Home = ({isLoading, isLoggedIn}) => {
     console.log(isLoggedIn);
     const navigate = useNavigate();
 
     useEffect(()=> {
-        if (isLoggedIn === false || isLoggedIn === null) {
+        if ((isLoggedIn === false || isLoggedIn === null) && isLoading === false) {
             navigate('/')
         }
     }, [isLoggedIn, navigate]);
