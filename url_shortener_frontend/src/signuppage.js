@@ -19,8 +19,8 @@ const Signup = ({ isLoggedIn, setIsLoggedIn }) => {
         });
         
         if(res.ok) {
-            setIsLoggedIn(true);
-            navigate('/home');
+            setIsLoggedIn(null);
+            navigate('/');
         }
     }
 

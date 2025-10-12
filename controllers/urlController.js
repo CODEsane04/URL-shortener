@@ -1,9 +1,12 @@
 const { nanoid } = require('nanoid');
 const URL = require('../models/urlModel');
 
+//controller to generate new short url
+
 async function handleGenerateNewShortUrl(req, res) {
     console.log("recieved a post request");
     
+    const userId = req.user._id;
     const long_url = req.body.long_url;
 
     if (!long_url) {
@@ -24,6 +27,7 @@ async function handleGenerateNewShortUrl(req, res) {
             shortUrl: short_url,
             redirectUrl: long_url,
             visitHistory: [{ timestamp: now }], 
+            createdBy: userId,
         });
 
         console.log("saved the entry");
@@ -38,6 +42,8 @@ async function handleGenerateNewShortUrl(req, res) {
         return res.status(500).json({message: "failed to shorten the url"});
     }
 }
+
+//controller to redirect to the main url via short url
 
 async function handleGoToRedirectedUrl(req, res) {
     console.log("recieved a get request");
@@ -70,11 +76,15 @@ async function handleGoToRedirectedUrl(req, res) {
     }
 }
 
+//controller to load links related to the logged in user
+
 async function handleLoadAllLinks(req, res) {
     console.log("recieved a request to load all urls");
 
+    const userId = req.user._id;
+
     try {
-        const allUrls = await URL.find({});
+        const allUrls = await URL.find({createdBy: userId})
         return res.status(200).json(allUrls);
     } catch (error) {
         return res.status(500).json({message: "failed to load all urls"})

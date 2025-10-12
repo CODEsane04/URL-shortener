@@ -8,7 +8,11 @@ const Linkss = () => {
    useEffect(() => {
         const geturls = async () => {
             try {
-                const res = await fetch("http://localhost:8000/links");
+                const res = await fetch("/links", {
+                    method:'GET',
+                    headers: { "Content-Type": "application/json" },
+                    credentials: 'include',
+                });
                 const data = await res.json();
                 setUrls(data);
             } catch (err) {

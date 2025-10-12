@@ -19,14 +19,16 @@ const Home = ({ isLoggedIn, setIsLoggedIn }) => {
         
         console.log("sent a post request");
         
-        const res = await fetch('http://localhost:8000', {
+        const res = await fetch('/', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({long_url:url})
+            body: JSON.stringify({long_url:url}),
+            credentials: 'include',
         });
 
         const short_url_doc = await res.json();
         setFetchedUrl(short_url_doc);
+        setUrl('');
     }
 
     return (

@@ -14,7 +14,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
     
     
     const handleLogin = async ()=> {
-        const res = await fetch('http://localhost:8000/user/login', {
+        const res = await fetch('/user/login', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
 
     return (
         <div className="box">
-            <h2>SIGN IN</h2>
+            <h2>LOGIN</h2>
             <div className="s-inputs">
 
                 <label>Email</label>
