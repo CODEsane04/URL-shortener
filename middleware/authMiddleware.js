@@ -9,7 +9,7 @@ function restrictLoggedInUserOnly (req, res, next) {
 
     try {
         const user = getUser(token);
-
+        
         //if user is found, attach it to the request object
         req.user = user;
         next();
