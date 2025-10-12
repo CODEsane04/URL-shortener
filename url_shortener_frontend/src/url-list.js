@@ -1,11 +1,18 @@
 import { useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
 
-const Linkss = () => {
+const Linkss = ({ isLoggedIn, setIsLoggedIn }) => {
 
     const[urls, setUrls] = useState([]);
+    const navigate = useNavigate();
 
    useEffect(() => {
+
+        if (isLoggedIn === null || isLoggedIn === false) {
+            navigate('/')
+        }
+
         const geturls = async () => {
             try {
                 const res = await fetch("/links", {

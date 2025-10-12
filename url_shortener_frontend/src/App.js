@@ -23,7 +23,7 @@ function App() {
 
             <Route path="/home" element={<Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
 
-            <Route path="/links" element={<Links />} />
+            <Route path="/links" element={<Links isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
 
             <Route path="/user" element={<Signup isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
             
