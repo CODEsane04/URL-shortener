@@ -1,22 +1,24 @@
 const {getUser} = require('../service/authService');
 
 function restrictLoggedInUserOnly (req, res, next) {
-    const sessionId = req.cookies?.uid;
+    const token = req.cookies?.token;
 
-    if (!sessionId) {
+    if (!token) {
         return res.status(401).json({message: "unauthorized, please login"});
     }
 
-    const user = getUser(sessionId);
+    try {
+        const user = getUser(token);
 
-    if (!user) {
-        return res.status(401).json({ error: 'Unauthorized: Invalid session' });
+        //if user is found, attach it to the request object
+        req.user = user;
+        next();
+
+    } catch (error) {
+
+        return res.status(401).json({ error: 'Unauthorized: Invalid token' });
     }
 
-    //if user is found, attach it to the request object
-    req.user = user;
-
-    next();
 }
 
 module.exports = {

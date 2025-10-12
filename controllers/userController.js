@@ -29,14 +29,14 @@ const handleUserLogin = async (req, res)=> {
         res.status(400).json({message : "no such user exists"});
     };
 //----- auth start
-    const sessionId = uuidv4();
-    setUser(sessionId, user);
-    res.cookie('uid', sessionId, {
+    //const sessionId = uuidv4();
+    const token = setUser(user);
+    res.cookie('token', token, {
         httpOnly: true, // Makes the cookie inaccessible to client-side JavaScript (good security)
         sameSite: 'lax' // Be explicit, even if it's the default
     });
 //----- auth end
-    console.log(sessionId);
+    console.log(token);
     return res.status(200).json({message: "logged in succesfully"});
 }
 
