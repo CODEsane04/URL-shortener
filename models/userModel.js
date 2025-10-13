@@ -13,7 +13,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    
+    role: {
+        type: String,
+        enum: ['NORMAL', 'ADMIN'],
+        default: 'NORMAL',
+    }
 }, { timestamps: true });
 
 const User = mongoose.model("user", userSchema);
