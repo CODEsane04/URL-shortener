@@ -1,0 +1,14 @@
+# Node dependencies
+node_modules
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Build files (optional if you have a frontend build folder)
+dist/
+build/

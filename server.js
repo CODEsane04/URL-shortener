@@ -5,11 +5,13 @@ const mongoose = require('mongoose');
 const urlRoutes = require('./routes/urlRouter');
 const userRoutes = require('./routes/userRouter');
 const cookieParser = require('cookie-parser');
+require('dotenv').config();
 const { restrictLoggedInUserOnly } = require('./middleware/authMiddleware');
 
-const PORT=8000;
+const mongo_URI = process.env.MONGO_URI;
+const PORT = process.env.PORT || 8000;
 //connect to mongoDb
-mongoose.connect('mongodb://127.0.0.1:27017/url')
+mongoose.connect(mongo_URI)
     .then(()=> {
         console.log("connected to mongoDB");
         app.listen(PORT, ()=> {

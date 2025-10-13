@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
-const secret = '$sane#'
+require('dotenv').config();
+
+const secret = process.env.JWT_SECRET;
 
 function setUser(user) {
 
@@ -10,7 +12,9 @@ function setUser(user) {
         _id : user._id,
         email: user.email,
     }
-    return jwt.sign(payload, secret);
+    return jwt.sign(payload, secret, {
+        expiresIn: '1h'
+    });
 }
 
 function getUser(token) {
